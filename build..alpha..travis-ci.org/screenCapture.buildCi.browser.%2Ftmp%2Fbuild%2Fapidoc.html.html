@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="http://facebook.github.io/jest/"
-
-    >jest-cli (v19.0.2)</a>
+    <a href="http://facebook.github.io/jest/">jest-cli (v19.0.2)</a>
 </h1>
 <h4>Painless JavaScript Testing.</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.jest-cli">module jest-cli</a><ol>
 
@@ -231,17 +224,17 @@ constructor( hasteMap, config, options)
 
   this._rootPattern =
   new RegExp(config.roots.map(
-  dir =&#x3e; escapePathForRegex(dir)).
-  join(&#x27;|&#x27;));
+  dir =&gt; escapePathForRegex(dir)).
+  join('|'));
 
   const ignorePattern = config.testPathIgnorePatterns;
   this._testIgnorePattern =
-  ignorePattern.length ? new RegExp(ignorePattern.join(&#x27;|&#x27;)) : null;
+  ignorePattern.length ? new RegExp(ignorePattern.join('|')) : null;
 
   this._testPathCases = {
-    roots: path =&#x3e; this._rootPattern.test(path),
+    roots: path =&gt; this._rootPattern.test(path),
     testMatch: globsToMatcher(config.testMatch),
-    testPathIgnorePatterns: path =&#x3e;
+    testPathIgnorePatterns: path =&gt;
     !this._testIgnorePattern ||
     !this._testIgnorePattern.test(path),
 
@@ -261,15 +254,15 @@ testPathPattern)
 
   const testCases = Object.assign({}, this._testPathCases);
   if (testPathPattern) {
-    const regex = new RegExp(testPathPattern, &#x27;i&#x27;);
-    testCases.testPathPattern = path =&#x3e; regex.test(path);
+    const regex = new RegExp(testPathPattern, 'i');
+    testCases.testPathPattern = path =&gt; regex.test(path);
   }
 
-  data.paths = allPaths.filter(path =&#x3e; {
-    return Object.keys(testCases).reduce((flag, key) =&#x3e; {
+  data.paths = allPaths.filter(path =&gt; {
+    return Object.keys(testCases).reduce((flag, key) =&gt; {
       if (testCases[key](path)) {
         data.stats[key] = ++data.stats[key] || 1;
-        return flag &#x26;&#x26; true;
+        return flag &amp;&amp; true;
       }
       data.stats[key] = data.stats[key] || 0;
       return false;
@@ -289,7 +282,7 @@ testPathPattern)
 }
 
 isTestFilePath(path) {
-  return Object.keys(this._testPathCases).every(key =&#x3e;
+  return Object.keys(this._testPathCases).every(key =&gt;
   this._testPathCases[key](path));
 
 }
@@ -319,8 +312,8 @@ findRelatedTests(allPaths) {
 findRelatedTestsFromPattern(
 paths)
 {
-  if (Array.isArray(paths) &#x26;&#x26; paths.length) {
-    const resolvedPaths = paths.map(p =&#x3e; path.resolve(process.cwd(), p));
+  if (Array.isArray(paths) &amp;&amp; paths.length) {
+    const resolvedPaths = paths.map(p =&gt; path.resolve(process.cwd(), p));
     return this.findRelatedTests(new Set(resolvedPaths));
   }
   return { paths: [] };
@@ -328,20 +321,20 @@ paths)
 
 findChangedTests(options) {
   return Promise.all(this._config.roots.map(determineSCM)).
-  then(repos =&#x3e; {
-    if (!repos.every((_ref) =&#x3e; {var _ref2 = _slicedToArray(_ref, 2);let gitRepo = _ref2[0],hgRepo = _ref2[1];return gitRepo || hgRepo
+  then(repos =&gt; {
+    if (!repos.every((_ref) =&gt; {var _ref2 = _slicedToArray(_ref, 2);let gitRepo = _ref2[0],hgRepo = _ref2[1];return gitRepo || hgRepo
 ;})) {
       return {
         noSCM: true,
         paths: [] };
 
     }
-    return Promise.all(Array.from(repos).map((_ref3) =&#x3e; {var _ref4 = _slicedToArray(_ref3, 2);let gitRepo = _ref4[0],hgRepo = _ref4
+    return Promise.all(Array.from(repos).map((_ref3) =&gt; {var _ref4 = _slicedToArray(_ref3, 2);let gitRepo = _ref4[0],hgRepo = _ref4
 [1];
       return gitRepo ?
       git.findChangedFiles(gitRepo, options) :
       hg.findChangedFiles(hgRepo, options);
-    })).then(changedPathSets =&#x3e; this.findRelatedTests(
+    })).then(changedPathSets =&gt; this.findRelatedTests(
     new Set(Array.prototype.concat.apply([], changedPathSets))));
 
   });
@@ -355,34 +348,34 @@ data)
   if (patternInfo.onlyChanged) {
     return (
       chalk.bold(
-      &#x27;No tests found related to files changed since last commit.\n&#x27;) +
+      'No tests found related to files changed since last commit.\n') +
 
       chalk.dim(
       patternInfo.watch ?
-      &#x27;Press `a` to run all tests, or run Jest with `--watchAll`.&#x27; :
-      &#x27;Run Jest without `-o` to run all tests.&#x27;));
+      'Press `a` to run all tests, or run Jest with `--watchAll`.' :
+      'Run Jest without `-o` to run all tests.'));
 
 
   }
 
   const testPathPattern = SearchSource.getTestPathPattern(patternInfo);
   const stats = data.stats || {};
-  const statsMessage = Object.keys(stats).map(key =&#x3e; {
-    const value = key === &#x27;testPathPattern&#x27; ? testPathPattern : config[key];
+  const statsMessage = Object.keys(stats).map(key =&gt; {
+    const value = key === 'testPathPattern' ? testPathPattern : config[key];
     if (value) {
-      const matches = pluralize(&#x27;match&#x27;, stats[key], &#x27;es&#x27;);
+      const matches = pluralize('match', stats[key], 'es');
       return `  ${key}: ${chalk.yellow(value)} - ${matches}`;
     }
     return null;
-  }).filter(line =&#x3e; line).join(&#x27;\n&#x27;);
+  }).filter(line =&gt; line).join('\n');
 
   return (
-    chalk.bold(&#x27;No tests found&#x27;) + &#x27;\n&#x27; + (
+    chalk.bold('No tests found') + '\n' + (
     data.total ?
-    `  ${pluralize(&#x27;file&#x27;, data.total || 0, &#x27;s&#x27;)} checked.\n` +
+    `  ${pluralize('file', data.total || 0, 's')} checked.\n` +
     statsMessage :
     `No files found in ${config.rootDir}.\n` +
-    `Make sure Jest&#x27;s configuration does not exclude this directory.\ ...</pre></li>
+    `Make sure Jest's configuration does not exclude this directory.\ ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -415,7 +408,7 @@ constructor( hasteContext, config, options, startRun)
   this._startRun = startRun;
   this._setupReporters();
 
-  // Map from testFilePath -&#x3e; time it takes to run the test. Used to
+  // Map from testFilePath -&gt; time it takes to run the test. Used to
   // optimally schedule bigger test runs.
   this._testPerformanceCache = {};
 }
@@ -430,7 +423,7 @@ removeReporter(ReporterClass) {
 
 _getTestPerformanceCachePath() {
   const config = this._config;
-  return getCacheFilePath(config.cacheDirectory, &#x27;perf-cache-&#x27; + config.name);
+  return getCacheFilePath(config.cacheDirectory, 'perf-cache-' + config.name);
 }
 
 _sortTests(testPaths) {
@@ -446,7 +439,7 @@ _sortTests(testPaths) {
     if (this._config.cache) {
       this._testPerformanceCache = JSON.parse(fs.readFileSync(
       this._getTestPerformanceCachePath(),
-      &#x27;utf8&#x27;));
+      'utf8'));
 
     } else {
       this._testPerformanceCache = {};
@@ -458,9 +451,9 @@ _sortTests(testPaths) {
   const cache = this._testPerformanceCache;
   const timings = [];
   const stats = {};
-  const getFileSize = filePath =&#x3e;
+  const getFileSize = filePath =&gt;
   stats[filePath] || (stats[filePath] = fs.statSync(filePath).size);
-  const getTestRunTime = filePath =&#x3e; {
+  const getTestRunTime = filePath =&gt; {
     if (cache[filePath]) {
       return cache[filePath][0] === FAIL ? Infinity : cache[filePath][1];
     }
@@ -468,17 +461,17 @@ _sortTests(testPaths) {
   };
 
   testPaths = testPaths.
-  sort((pathA, pathB) =&#x3e; {
+  sort((pathA, pathB) =&gt; {
     const timeA = getTestRunTime(pathA);
     const timeB = getTestRunTime(pathB);
-    if (timeA != null &#x26;&#x26; timeB != null) {
-      return timeA &#x3c; timeB ? 1 : -1;
+    if (timeA != null &amp;&amp; timeB != null) {
+      return timeA &lt; timeB ? 1 : -1;
     }
-    return getFileSize(pathA) &#x3c; getFileSize(pathB) ? 1 : -1;
+    return getFileSize(pathA) &lt; getFileSize(pathB) ? 1 : -1;
   });
 
-  testPaths.forEach(filePath =&#x3e; {
-    const timing = cache[filePath] &#x26;&#x26; cache[filePath][1];
+  testPaths.forEach(filePath =&gt; {
+    const timing = cache[filePath] &amp;&amp; cache[filePath][1];
     if (timing) {
       timings.push(timing);
     }
@@ -489,8 +482,8 @@ _sortTests(testPaths) {
 
 _cacheTestResults(aggregatedResults) {
   const cache = this._testPerformanceCache;
-  aggregatedResults.testResults.forEach(test =&#x3e; {
-    if (test &#x26;&#x26; !test.skipped) {
+  aggregatedResults.testResults.forEach(test =&gt; {
+    if (test &amp;&amp; !test.skipped) {
       const perf = test.perfStats;
       cache[test.testFilePath] = [
       test.numFailingTests ? FAIL : SUCCESS,
@@ -511,12 +504,12 @@ runTests(paths, watcher) {
   const estimatedTime =
   Math.ceil(getEstimatedTime(timings, this._options.maxWorkers) / 1000);
 
-  const onResult = (testPath, testResult) =&#x3e; {
+  const onResult = (testPath, testResult) =&gt; {
     if (watcher.isInterrupted()) {
       return;
     }
     if (testResult.testResults.length === 0) {
-      const message = &#x27;Your test suite must contain at least one test.&#x27;;
+      const message = 'Your test suite must contain at least one test.';
       onFailure(testPath, {
         message,
         stack: new Error(message).stack });
@@ -532,7 +525,7 @@ runTests(paths, watcher) {
     this._bailIfNeeded(aggregatedResults, watcher);
   };
 
-  const onFailure = (testPath, error) =&#x3e; {
+  const onFailure = (testPath, error) =&gt; {
     if (watcher.isInterrupted()) {
       return;
     }
@@ -572,7 +565,7 @@ constructor(_ref) {let isWatchMode = _ref.isWatchMode;
 
 setState(state) {
   Object.assign(this.state, state);
-  this.emit(&#x27;change&#x27;, this.state);
+  this.emit('change', this.state);
 }
 
 isInterrupted() {
@@ -594,7 +587,7 @@ isWatchMode() {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; VERSION</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; VERSION</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -611,7 +604,7 @@ isWatchMode() {
   argv = yargs(argv || process.argv.slice(2)).
   usage(args.usage).
   help().
-  alias(&#x27;help&#x27;, &#x27;h&#x27;).
+  alias('help', 'h').
   options(args.options).
   check(args.check).
   argv;
@@ -620,7 +613,7 @@ isWatchMode() {
 
   if (argv.help) {
     yargs.showHelp();
-    process.on(&#x27;exit&#x27;, () =&#x3e; process.exit(1));
+    process.on('exit', () =&gt; process.exit(1));
     return;
   }
 
@@ -628,10 +621,10 @@ isWatchMode() {
     root = getPackageRoot();
   }
 
-  getJest(root).runCLI(argv, root, result =&#x3e; {
+  getJest(root).runCLI(argv, root, result =&gt; {
     const code = !result || result.success ? 0 : 1;
-    process.on(&#x27;exit&#x27;, () =&#x3e; process.exit(code));
-    if (argv &#x26;&#x26; argv.forceExit) {
+    process.on('exit', () =&gt; process.exit(code));
+    if (argv &amp;&amp; argv.forceExit) {
       process.exit(code);
     }
   });
@@ -648,18 +641,18 @@ isWatchMode() {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">( argv, root, onComplete) =&#x3e;
+    <li>description and source-code<pre class="apidocCodePre">( argv, root, onComplete) =&gt;
 {
   const pipe = argv.json ? process.stderr : process.stdout;
   argv = argv || {};
   if (argv.version) {
     pipe.write(`v${VERSION}\n`);
-    onComplete &#x26;&#x26; onComplete();
+    onComplete &amp;&amp; onComplete();
     return;
   }
 
   readConfig(argv, root).
-  then((_ref) =&#x3e;
+  then((_ref) =&gt;
 
 
 
@@ -679,12 +672,12 @@ isWatchMode() {
 
 
     return jestHasteMap.build().then(
-    hasteMap =&#x3e; createHasteContext(config, hasteMap),
-    error =&#x3e; {
+    hasteMap =&gt; createHasteContext(config, hasteMap),
+    error =&gt; {
       throw error;
     }).
 
-    then(hasteContext =&#x3e; {
+    then(hasteContext =&gt; {
       if (argv.watch || argv.watchAll) {
         return watch(
         config,
@@ -695,7 +688,7 @@ isWatchMode() {
         hasDeprecationWarnings);
 
       } else {
-        const startRun = () =&#x3e; {
+        const startRun = () =&gt; {
           preRunMessage.print(pipe);
           const testWatcher = new TestWatcher({ isWatchMode: false });
           return runJest(
@@ -712,7 +705,7 @@ isWatchMode() {
       }
     });
   }).
-  catch(error =&#x3e; {
+  catch(error =&gt; {
     clearLine(process.stderr);
     clearLine(process.stdout);
     console.error(chalk.red(error.stack));
@@ -759,17 +752,17 @@ constructor( hasteMap, config, options)
 
   this._rootPattern =
   new RegExp(config.roots.map(
-  dir =&#x3e; escapePathForRegex(dir)).
-  join(&#x27;|&#x27;));
+  dir =&gt; escapePathForRegex(dir)).
+  join('|'));
 
   const ignorePattern = config.testPathIgnorePatterns;
   this._testIgnorePattern =
-  ignorePattern.length ? new RegExp(ignorePattern.join(&#x27;|&#x27;)) : null;
+  ignorePattern.length ? new RegExp(ignorePattern.join('|')) : null;
 
   this._testPathCases = {
-    roots: path =&#x3e; this._rootPattern.test(path),
+    roots: path =&gt; this._rootPattern.test(path),
     testMatch: globsToMatcher(config.testMatch),
-    testPathIgnorePatterns: path =&#x3e;
+    testPathIgnorePatterns: path =&gt;
     !this._testIgnorePattern ||
     !this._testIgnorePattern.test(path),
 
@@ -789,15 +782,15 @@ testPathPattern)
 
   const testCases = Object.assign({}, this._testPathCases);
   if (testPathPattern) {
-    const regex = new RegExp(testPathPattern, &#x27;i&#x27;);
-    testCases.testPathPattern = path =&#x3e; regex.test(path);
+    const regex = new RegExp(testPathPattern, 'i');
+    testCases.testPathPattern = path =&gt; regex.test(path);
   }
 
-  data.paths = allPaths.filter(path =&#x3e; {
-    return Object.keys(testCases).reduce((flag, key) =&#x3e; {
+  data.paths = allPaths.filter(path =&gt; {
+    return Object.keys(testCases).reduce((flag, key) =&gt; {
       if (testCases[key](path)) {
         data.stats[key] = ++data.stats[key] || 1;
-        return flag &#x26;&#x26; true;
+        return flag &amp;&amp; true;
       }
       data.stats[key] = data.stats[key] || 0;
       return false;
@@ -817,7 +810,7 @@ testPathPattern)
 }
 
 isTestFilePath(path) {
-  return Object.keys(this._testPathCases).every(key =&#x3e;
+  return Object.keys(this._testPathCases).every(key =&gt;
   this._testPathCases[key](path));
 
 }
@@ -847,8 +840,8 @@ findRelatedTests(allPaths) {
 findRelatedTestsFromPattern(
 paths)
 {
-  if (Array.isArray(paths) &#x26;&#x26; paths.length) {
-    const resolvedPaths = paths.map(p =&#x3e; path.resolve(process.cwd(), p));
+  if (Array.isArray(paths) &amp;&amp; paths.length) {
+    const resolvedPaths = paths.map(p =&gt; path.resolve(process.cwd(), p));
     return this.findRelatedTests(new Set(resolvedPaths));
   }
   return { paths: [] };
@@ -856,20 +849,20 @@ paths)
 
 findChangedTests(options) {
   return Promise.all(this._config.roots.map(determineSCM)).
-  then(repos =&#x3e; {
-    if (!repos.every((_ref) =&#x3e; {var _ref2 = _slicedToArray(_ref, 2);let gitRepo = _ref2[0],hgRepo = _ref2[1];return gitRepo || hgRepo
+  then(repos =&gt; {
+    if (!repos.every((_ref) =&gt; {var _ref2 = _slicedToArray(_ref, 2);let gitRepo = _ref2[0],hgRepo = _ref2[1];return gitRepo || hgRepo
 ;})) {
       return {
         noSCM: true,
         paths: [] };
 
     }
-    return Promise.all(Array.from(repos).map((_ref3) =&#x3e; {var _ref4 = _slicedToArray(_ref3, 2);let gitRepo = _ref4[0],hgRepo = _ref4
+    return Promise.all(Array.from(repos).map((_ref3) =&gt; {var _ref4 = _slicedToArray(_ref3, 2);let gitRepo = _ref4[0],hgRepo = _ref4
 [1];
       return gitRepo ?
       git.findChangedFiles(gitRepo, options) :
       hg.findChangedFiles(hgRepo, options);
-    })).then(changedPathSets =&#x3e; this.findRelatedTests(
+    })).then(changedPathSets =&gt; this.findRelatedTests(
     new Set(Array.prototype.concat.apply([], changedPathSets))));
 
   });
@@ -883,34 +876,34 @@ data)
   if (patternInfo.onlyChanged) {
     return (
       chalk.bold(
-      &#x27;No tests found related to files changed since last commit.\n&#x27;) +
+      'No tests found related to files changed since last commit.\n') +
 
       chalk.dim(
       patternInfo.watch ?
-      &#x27;Press `a` to run all tests, or run Jest with `--watchAll`.&#x27; :
-      &#x27;Run Jest without `-o` to run all tests.&#x27;));
+      'Press `a` to run all tests, or run Jest with `--watchAll`.' :
+      'Run Jest without `-o` to run all tests.'));
 
 
   }
 
   const testPathPattern = SearchSource.getTestPathPattern(patternInfo);
   const stats = data.stats || {};
-  const statsMessage = Object.keys(stats).map(key =&#x3e; {
-    const value = key === &#x27;testPathPattern&#x27; ? testPathPattern : config[key];
+  const statsMessage = Object.keys(stats).map(key =&gt; {
+    const value = key === 'testPathPattern' ? testPathPattern : config[key];
     if (value) {
-      const matches = pluralize(&#x27;match&#x27;, stats[key], &#x27;es&#x27;);
+      const matches = pluralize('match', stats[key], 'es');
       return `  ${key}: ${chalk.yellow(value)} - ${matches}`;
     }
     return null;
-  }).filter(line =&#x3e; line).join(&#x27;\n&#x27;);
+  }).filter(line =&gt; line).join('\n');
 
   return (
-    chalk.bold(&#x27;No tests found&#x27;) + &#x27;\n&#x27; + (
+    chalk.bold('No tests found') + '\n' + (
     data.total ?
-    `  ${pluralize(&#x27;file&#x27;, data.total || 0, &#x27;s&#x27;)} checked.\n` +
+    `  ${pluralize('file', data.total || 0, 's')} checked.\n` +
     statsMessage :
     `No files found in ${config.rootDir}.\n` +
-    `Make sure Jest&#x27;s configuration does not exclude this directory.\ ...</pre></li>
+    `Make sure Jest's configuration does not exclude this directory.\ ...</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -948,7 +941,7 @@ constructor( hasteContext, config, options, startRun)
   this._startRun = startRun;
   this._setupReporters();
 
-  // Map from testFilePath -&#x3e; time it takes to run the test. Used to
+  // Map from testFilePath -&gt; time it takes to run the test. Used to
   // optimally schedule bigger test runs.
   this._testPerformanceCache = {};
 }
@@ -963,7 +956,7 @@ removeReporter(ReporterClass) {
 
 _getTestPerformanceCachePath() {
   const config = this._config;
-  return getCacheFilePath(config.cacheDirectory, &#x27;perf-cache-&#x27; + config.name);
+  return getCacheFilePath(config.cacheDirectory, 'perf-cache-' + config.name);
 }
 
 _sortTests(testPaths) {
@@ -979,7 +972,7 @@ _sortTests(testPaths) {
     if (this._config.cache) {
       this._testPerformanceCache = JSON.parse(fs.readFileSync(
       this._getTestPerformanceCachePath(),
-      &#x27;utf8&#x27;));
+      'utf8'));
 
     } else {
       this._testPerformanceCache = {};
@@ -991,9 +984,9 @@ _sortTests(testPaths) {
   const cache = this._testPerformanceCache;
   const timings = [];
   const stats = {};
-  const getFileSize = filePath =&#x3e;
+  const getFileSize = filePath =&gt;
   stats[filePath] || (stats[filePath] = fs.statSync(filePath).size);
-  const getTestRunTime = filePath =&#x3e; {
+  const getTestRunTime = filePath =&gt; {
     if (cache[filePath]) {
       return cache[filePath][0] === FAIL ? Infinity : cache[filePath][1];
     }
@@ -1001,17 +994,17 @@ _sortTests(testPaths) {
   };
 
   testPaths = testPaths.
-  sort((pathA, pathB) =&#x3e; {
+  sort((pathA, pathB) =&gt; {
     const timeA = getTestRunTime(pathA);
     const timeB = getTestRunTime(pathB);
-    if (timeA != null &#x26;&#x26; timeB != null) {
-      return timeA &#x3c; timeB ? 1 : -1;
+    if (timeA != null &amp;&amp; timeB != null) {
+      return timeA &lt; timeB ? 1 : -1;
     }
-    return getFileSize(pathA) &#x3c; getFileSize(pathB) ? 1 : -1;
+    return getFileSize(pathA) &lt; getFileSize(pathB) ? 1 : -1;
   });
 
-  testPaths.forEach(filePath =&#x3e; {
-    const timing = cache[filePath] &#x26;&#x26; cache[filePath][1];
+  testPaths.forEach(filePath =&gt; {
+    const timing = cache[filePath] &amp;&amp; cache[filePath][1];
     if (timing) {
       timings.push(timing);
     }
@@ -1022,8 +1015,8 @@ _sortTests(testPaths) {
 
 _cacheTestResults(aggregatedResults) {
   const cache = this._testPerformanceCache;
-  aggregatedResults.testResults.forEach(test =&#x3e; {
-    if (test &#x26;&#x26; !test.skipped) {
+  aggregatedResults.testResults.forEach(test =&gt; {
+    if (test &amp;&amp; !test.skipped) {
       const perf = test.perfStats;
       cache[test.testFilePath] = [
       test.numFailingTests ? FAIL : SUCCESS,
@@ -1044,12 +1037,12 @@ runTests(paths, watcher) {
   const estimatedTime =
   Math.ceil(getEstimatedTime(timings, this._options.maxWorkers) / 1000);
 
-  const onResult = (testPath, testResult) =&#x3e; {
+  const onResult = (testPath, testResult) =&gt; {
     if (watcher.isInterrupted()) {
       return;
     }
     if (testResult.testResults.length === 0) {
-      const message = &#x27;Your test suite must contain at least one test.&#x27;;
+      const message = 'Your test suite must contain at least one test.';
       onFailure(testPath, {
         message,
         stack: new Error(message).stack });
@@ -1065,7 +1058,7 @@ runTests(paths, watcher) {
     this._bailIfNeeded(aggregatedResults, watcher);
   };
 
-  const onFailure = (testPath, error) =&#x3e; {
+  const onFailure = (testPath, error) =&gt; {
     if (watcher.isInterrupted()) {
       return;
     }
@@ -1110,7 +1103,7 @@ constructor(_ref) {let isWatchMode = _ref.isWatchMode;
 
 setState(state) {
   Object.assign(this.state, state);
-  this.emit(&#x27;change&#x27;, this.state);
+  this.emit('change', this.state);
 }
 
 isInterrupted() {
@@ -1137,7 +1130,7 @@ isWatchMode() {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; VERSION</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; VERSION</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -1159,7 +1152,7 @@ isWatchMode() {
   argv = yargs(argv || process.argv.slice(2)).
   usage(args.usage).
   help().
-  alias(&#x27;help&#x27;, &#x27;h&#x27;).
+  alias('help', 'h').
   options(args.options).
   check(args.check).
   argv;
@@ -1168,7 +1161,7 @@ isWatchMode() {
 
   if (argv.help) {
     yargs.showHelp();
-    process.on(&#x27;exit&#x27;, () =&#x3e; process.exit(1));
+    process.on('exit', () =&gt; process.exit(1));
     return;
   }
 
@@ -1176,10 +1169,10 @@ isWatchMode() {
     root = getPackageRoot();
   }
 
-  getJest(root).runCLI(argv, root, result =&#x3e; {
+  getJest(root).runCLI(argv, root, result =&gt; {
     const code = !result || result.success ? 0 : 1;
-    process.on(&#x27;exit&#x27;, () =&#x3e; process.exit(code));
-    if (argv &#x26;&#x26; argv.forceExit) {
+    process.on('exit', () =&gt; process.exit(code));
+    if (argv &amp;&amp; argv.forceExit) {
       process.exit(code);
     }
   });
@@ -1201,18 +1194,18 @@ isWatchMode() {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">( argv, root, onComplete) =&#x3e;
+    <li>description and source-code<pre class="apidocCodePre">( argv, root, onComplete) =&gt;
 {
   const pipe = argv.json ? process.stderr : process.stdout;
   argv = argv || {};
   if (argv.version) {
     pipe.write(`v${VERSION}\n`);
-    onComplete &#x26;&#x26; onComplete();
+    onComplete &amp;&amp; onComplete();
     return;
   }
 
   readConfig(argv, root).
-  then((_ref) =&#x3e;
+  then((_ref) =&gt;
 
 
 
@@ -1232,12 +1225,12 @@ isWatchMode() {
 
 
     return jestHasteMap.build().then(
-    hasteMap =&#x3e; createHasteContext(config, hasteMap),
-    error =&#x3e; {
+    hasteMap =&gt; createHasteContext(config, hasteMap),
+    error =&gt; {
       throw error;
     }).
 
-    then(hasteContext =&#x3e; {
+    then(hasteContext =&gt; {
       if (argv.watch || argv.watchAll) {
         return watch(
         config,
@@ -1248,7 +1241,7 @@ isWatchMode() {
         hasDeprecationWarnings);
 
       } else {
-        const startRun = () =&#x3e; {
+        const startRun = () =&gt; {
           preRunMessage.print(pipe);
           const testWatcher = new TestWatcher({ isWatchMode: false });
           return runJest(
@@ -1265,7 +1258,7 @@ isWatchMode() {
       }
     });
   }).
-  catch(error =&#x3e; {
+  catch(error =&gt; {
     clearLine(process.stderr);
     clearLine(process.stdout);
     console.error(chalk.red(error.stack));
@@ -1284,3 +1277,4 @@ isWatchMode() {
     ]
 </div>
 </div>
+</body></html>
