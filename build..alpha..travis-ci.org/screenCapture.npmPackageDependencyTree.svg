@@ -1,7 +1,7 @@
 <svg height="5342" width="720" xmlns="http://www.w3.org/2000/svg">
 <rect height="5342" fill="#555" width="720"></rect>
 <text fill="#7f7" font-family="Courier New" font-size="12" xml:space="preserve">
-<tspan x="10" y="26">47 megabytes installed</tspan>
+<tspan x="10" y="26">46 megabytes installed</tspan>
 <tspan x="10" y="42"></tspan>
 <tspan x="10" y="58">node_modules</tspan>
 <tspan x="10" y="74">└─┬ jest-cli@19.0.2 </tspan>
@@ -74,7 +74,7 @@
 <tspan x="10" y="1146">  │ │ ├── babel-messages@6.23.0 </tspan>
 <tspan x="10" y="1162">  │ │ ├─┬ babel-runtime@6.23.0 </tspan>
 <tspan x="10" y="1178">  │ │ │ ├── core-js@2.4.1 </tspan>
-<tspan x="10" y="1194">  │ │ │ └── regenerator-runtime@0.10.3 </tspan>
+<tspan x="10" y="1194">  │ │ │ └── regenerator-runtime@0.10.4 </tspan>
 <tspan x="10" y="1210">  │ │ ├─┬ detect-indent@4.0.0 </tspan>
 <tspan x="10" y="1226">  │ │ │ └─┬ repeating@2.0.1 </tspan>
 <tspan x="10" y="1242">  │ │ │   └── is-finite@1.0.2 </tspan>
@@ -84,23 +84,23 @@
 <tspan x="10" y="1306">  │ ├─┬ babel-traverse@6.24.1 </tspan>
 <tspan x="10" y="1322">  │ │ ├─┬ babel-code-frame@6.22.0 </tspan>
 <tspan x="10" y="1338">  │ │ │ └── js-tokens@3.0.1 </tspan>
-<tspan x="10" y="1354">  │ │ ├─┬ debug@2.6.3 </tspan>
-<tspan x="10" y="1370">  │ │ │ └── ms@0.7.2 </tspan>
+<tspan x="10" y="1354">  │ │ ├─┬ debug@2.6.5 </tspan>
+<tspan x="10" y="1370">  │ │ │ └── ms@0.7.3 </tspan>
 <tspan x="10" y="1386">  │ │ ├── globals@9.17.0 </tspan>
 <tspan x="10" y="1402">  │ │ └─┬ invariant@2.2.2 </tspan>
 <tspan x="10" y="1418">  │ │   └── loose-envify@1.3.1 </tspan>
 <tspan x="10" y="1434">  │ ├─┬ babel-types@6.24.1 </tspan>
 <tspan x="10" y="1450">  │ │ ├── esutils@2.0.2 </tspan>
 <tspan x="10" y="1466">  │ │ └── to-fast-properties@1.0.2 </tspan>
-<tspan x="10" y="1482">  │ ├── babylon@6.16.1 </tspan>
+<tspan x="10" y="1482">  │ ├── babylon@6.17.0 </tspan>
 <tspan x="10" y="1498">  │ └── semver@5.3.0 </tspan>
 <tspan x="10" y="1514">  ├── jest-changed-files@19.0.2 </tspan>
-<tspan x="10" y="1530">  ├─┬ jest-config@19.0.2 </tspan>
+<tspan x="10" y="1530">  ├─┬ jest-config@19.0.3 </tspan>
 <tspan x="10" y="1546">  │ ├── jest-environment-node@19.0.2 </tspan>
 <tspan x="10" y="1562">  │ ├─┬ jest-resolve@19.0.2 </tspan>
 <tspan x="10" y="1578">  │ │ ├─┬ browser-resolve@1.11.2 </tspan>
 <tspan x="10" y="1594">  │ │ │ └── resolve@1.1.7 </tspan>
-<tspan x="10" y="1610">  │ │ └── resolve@1.3.2 </tspan>
+<tspan x="10" y="1610">  │ │ └── resolve@1.3.3 </tspan>
 <tspan x="10" y="1626">  │ ├── jest-validate@19.0.2 </tspan>
 <tspan x="10" y="1642">  │ └─┬ pretty-format@19.0.0 </tspan>
 <tspan x="10" y="1658">  │   └─┬ ansi-styles@3.0.0 </tspan>
@@ -163,7 +163,7 @@
 <tspan x="10" y="2570">  │   │ │   ├─┬ dashdash@1.14.1 </tspan>
 <tspan x="10" y="2586">  │   │ │   │ └── assert-plus@1.0.0 </tspan>
 <tspan x="10" y="2602">  │   │ │   ├── ecc-jsbn@0.1.1 </tspan>
-<tspan x="10" y="2618">  │   │ │   ├─┬ getpass@0.1.6 </tspan>
+<tspan x="10" y="2618">  │   │ │   ├─┬ getpass@0.1.7 </tspan>
 <tspan x="10" y="2634">  │   │ │   │ └── assert-plus@1.0.0 </tspan>
 <tspan x="10" y="2650">  │   │ │   ├── jodid25519@1.0.2 </tspan>
 <tspan x="10" y="2666">  │   │ │   ├── jsbn@0.1.1 </tspan>
@@ -187,11 +187,11 @@
 <tspan x="10" y="2954">  │   ├── webidl-conversions@4.0.1 </tspan>
 <tspan x="10" y="2970">  │   ├─┬ whatwg-encoding@1.0.1 </tspan>
 <tspan x="10" y="2986">  │   │ └── iconv-lite@0.4.13 </tspan>
-<tspan x="10" y="3002">  │   ├─┬ whatwg-url@4.7.0 </tspan>
+<tspan x="10" y="3002">  │   ├─┬ whatwg-url@4.7.1 </tspan>
 <tspan x="10" y="3018">  │   │ ├── tr46@0.0.3 </tspan>
 <tspan x="10" y="3034">  │   │ └── webidl-conversions@3.0.1 </tspan>
 <tspan x="10" y="3050">  │   └── xml-name-validator@2.0.1 </tspan>
-<tspan x="10" y="3066">  ├─┬ jest-haste-map@19.0.0 </tspan>
+<tspan x="10" y="3066">  ├─┬ jest-haste-map@19.0.2 </tspan>
 <tspan x="10" y="3082">  │ ├─┬ fb-watchman@2.0.0 </tspan>
 <tspan x="10" y="3098">  │ │ └─┬ bser@2.0.0 </tspan>
 <tspan x="10" y="3114">  │ │   └── node-int64@0.4.0 </tspan>
@@ -214,7 +214,7 @@
 <tspan x="10" y="3386">  ├── jest-regex-util@19.0.0 </tspan>
 <tspan x="10" y="3402">  ├─┬ jest-resolve-dependencies@19.0.0 </tspan>
 <tspan x="10" y="3418">  │ └── jest-file-exists@19.0.0 </tspan>
-<tspan x="10" y="3434">  ├─┬ jest-runtime@19.0.2 </tspan>
+<tspan x="10" y="3434">  ├─┬ jest-runtime@19.0.3 </tspan>
 <tspan x="10" y="3450">  │ ├─┬ babel-core@6.24.1 </tspan>
 <tspan x="10" y="3466">  │ │ ├── babel-helpers@6.24.1 </tspan>
 <tspan x="10" y="3482">  │ │ ├─┬ babel-register@6.24.1 </tspan>
@@ -266,7 +266,7 @@
 <tspan x="10" y="4218">  │ ├── filename-regex@2.0.0 </tspan>
 <tspan x="10" y="4234">  │ ├── is-extglob@1.0.0 </tspan>
 <tspan x="10" y="4250">  │ ├── is-glob@2.0.1 </tspan>
-<tspan x="10" y="4266">  │ ├─┬ kind-of@3.1.0 </tspan>
+<tspan x="10" y="4266">  │ ├─┬ kind-of@3.2.0 </tspan>
 <tspan x="10" y="4282">  │ │ └── is-buffer@1.1.5 </tspan>
 <tspan x="10" y="4298">  │ ├─┬ normalize-path@2.1.1 </tspan>
 <tspan x="10" y="4314">  │ │ └── remove-trailing-separator@1.0.1 </tspan>
@@ -313,7 +313,7 @@
 <tspan x="10" y="4970">    │   │ │ └─┬ error-ex@1.3.1 </tspan>
 <tspan x="10" y="4986">    │   │ │   └── is-arrayish@0.2.1 </tspan>
 <tspan x="10" y="5002">    │   │ └── pify@2.3.0 </tspan>
-<tspan x="10" y="5018">    │   ├─┬ normalize-package-data@2.3.6 </tspan>
+<tspan x="10" y="5018">    │   ├─┬ normalize-package-data@2.3.8 </tspan>
 <tspan x="10" y="5034">    │   │ ├── hosted-git-info@2.4.2 </tspan>
 <tspan x="10" y="5050">    │   │ ├─┬ is-builtin-module@1.0.0 </tspan>
 <tspan x="10" y="5066">    │   │ │ └── builtin-modules@1.1.1 </tspan>
